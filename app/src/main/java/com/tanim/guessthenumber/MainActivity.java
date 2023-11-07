@@ -23,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Button check = findViewById(R.id.checkButton);
         TextView res = findViewById(R.id.resultText);
 
-
-
-
-
         check.setOnClickListener(view -> {
             if (!computerGuessGenerated) {
                 // Generate the initial computerGuess value only once
@@ -34,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 computerGuess = (int) ((Math.random() * maxLimit) + 1);
                 computerGuessGenerated = true;
             }
-
 
             int userInput = Integer.parseInt(user.getText().toString());
 

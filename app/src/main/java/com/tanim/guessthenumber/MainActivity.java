@@ -1,0 +1,55 @@
+package com.tanim.guessthenumber;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    private int maxLimit;
+    boolean computerGuessGenerated = false;
+    int computerGuess;
+    int tries = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        EditText max = findViewById(R.id.maxLimit);
+        EditText user = findViewById(R.id.userInput);
+        Button check = findViewById(R.id.checkButton);
+        TextView res = findViewById(R.id.resultText);
+
+
+
+
+
+        check.setOnClickListener(view -> {
+            if (!computerGuessGenerated) {
+                // Generate the initial computerGuess value only once
+                maxLimit = Integer.parseInt(max.getText().toString());
+                computerGuess = (int) ((Math.random() * maxLimit) + 1);
+                computerGuessGenerated = true;
+            }
+
+
+            int userInput = Integer.parseInt(user.getText().toString());
+
+            if (computerGuess == userInput) {
+                res.setText("Correct, you took " + tries + " tries.");
+                computerGuess = (int) ((Math.random() * maxLimit) + 1);
+                tries = 0;
+            } else {
+                if (computerGuess > userInput) {
+                    res.setText("Wrong, Number is higher");
+                } else if (computerGuess < userInput) {
+                    res.setText("Wrong, Number is lower");
+                }
+                tries++;
+            }
+        });
+    }
+}

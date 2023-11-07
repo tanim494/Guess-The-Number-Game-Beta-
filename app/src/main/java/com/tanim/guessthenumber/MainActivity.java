@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 tries++;
             }
+            user.setText("");
         });
     }
 }

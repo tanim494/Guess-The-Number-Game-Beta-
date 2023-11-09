@@ -1,5 +1,7 @@
 package com.tanim.guessthenumber;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,13 +36,15 @@ public class MainActivity extends AppCompatActivity {
             int userInput = Integer.parseInt(user.getText().toString());
 
             if (computerGuess == userInput) {
+                check.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                 res.setText("Correct, you took " + tries + " tries.");
                 computerGuess = (int) ((Math.random() * maxLimit) + 1);
                 tries = 0;
             } else {
+                check.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
                 if (computerGuess > userInput) {
                     res.setText("Wrong, Number is higher");
-                } else if (computerGuess < userInput) {
+                } else {
                     res.setText("Wrong, Number is lower");
                 }
                 tries++;
